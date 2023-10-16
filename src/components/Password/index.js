@@ -24,7 +24,7 @@ class Password extends Component {
           </div>
         </div>
         <hr />
-        <div>
+        <div className="show-password-container">
           <input id="showPassword" type="checkbox" />
           <label htmlFor="showPassword">Show Passwords</label>
         </div>

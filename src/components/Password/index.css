@@ -1,13 +1,12 @@
 .password_container {
-  background-color: #454f84;
+  background-color: #5763a5;
   border-radius: 8px;
   height: 50vh;
 }
 
 .password-heading-container {
   display: flex;
-  justify-content: flex-start;
-  align-items: space-between;
+  justify-content: space-between;
 }
 
 .search-container {
@@ -27,4 +26,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.show-password-container {
+  display: flex;
+  justify-content: flex-end;
 }
