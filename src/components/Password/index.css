@@ -1,0 +1,30 @@
+.password_container {
+  background-color: #454f84;
+  border-radius: 8px;
+  height: 50vh;
+}
+
+.password-heading-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: space-between;
+}
+
+.search-container {
+  height: 50px;
+}
+
+.search-icon {
+  height: 20px;
+}
+
+.search-input {
+  height: 50px;
+  outline: none;
+}
+
+.password-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
