@@ -2,13 +2,21 @@ import {Component} from 'react'
 import './index.css'
 import NoPassword from '../NoPassword'
 
+import PasswordItem from '../PasswordItem'
+
 class Password extends Component {
+  state = {
+    passwordCount: 1,
+  }
+
   render() {
+    const {passwordCount} = this.state
     return (
       <div className="passwords-container">
         <div className="password-heading-container">
           <p>
-            Your Passwords <span className="password-count">0</span>
+            Your Passwords{' '}
+            <span className="password-count">{passwordCount}</span>
           </p>
           <div className="search-container">
             <img
@@ -28,9 +36,7 @@ class Password extends Component {
           <input id="showPassword" type="checkbox" />
           <label htmlFor="showPassword">Show Passwords</label>
         </div>
-        <div className="password-details">
-          <NoPassword />
-        </div>
+        <PasswordItem />
       </div>
     )
   }

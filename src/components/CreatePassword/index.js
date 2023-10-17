@@ -2,11 +2,40 @@ import {Component} from 'react'
 import './index.css'
 
 class CreatePassword extends Component {
-  onAddButton = event => {
-    event.preventDefault()
+  state = {
+    siteName: '',
+    userName: '',
+    password: '',
+  }
+
+  OnSiteChange = event => {
+    this.setState({siteName: event.target.value})
+  }
+
+  OnUserChange = event => {
+    this.setState({userName: event.target.value})
+  }
+
+  OnPasswordChange = event => {
+    this.setState({password: event.target.value})
   }
 
   render() {
+    const {accountDetails, onAddingPassword} = this.props
+    const onAddButton = event => {
+      event.preventDefault()
+      const {siteName, userName, password} = this.state
+      if (siteName && userName && password) {
+        console.log('Namaste')
+        const newDetails = {
+          siteName: {siteName},
+          userName: {userName},
+          password: {password},
+        }
+        console.log(newDetails)
+      }
+    }
+
     return (
       <div className="create-password-container">
         <img
@@ -14,7 +43,7 @@ class CreatePassword extends Component {
           alt="password manager"
           className="password-manager-img"
         />
-        <form onSubmit={this.onAddButton} className="add-container">
+        <form onSubmit={onAddButton()} className="add-container">
           <h1>Add New Password</h1>
           <div className="details-container">
             <img
@@ -26,6 +55,7 @@ class CreatePassword extends Component {
               type="text"
               placeholder="Enter Website"
               className="details-input"
+              onChange={this.OnSiteChange}
             />
           </div>
           <div className="details-container">
@@ -38,6 +68,7 @@ class CreatePassword extends Component {
               type="text"
               placeholder="Enter Username"
               className="details-input"
+              onChange={this.OnUserChange}
             />
           </div>
           <div className="details-container">
@@ -50,6 +81,7 @@ class CreatePassword extends Component {
               type="password"
               placeholder="Enter Password"
               className="details-input"
+              onChange={this.OnPasswordChange}
             />
           </div>
           <button type="submit" className="add-btn">
