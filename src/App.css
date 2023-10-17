@@ -10,3 +10,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.password-manager {
+  background-color: #9ba9eb;
+  padding: 20px;
+}
+
+.app-logo {
+  height: 50px;
+  margin-bottom: 20px;
+}

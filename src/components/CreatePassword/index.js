@@ -2,6 +2,10 @@ import {Component} from 'react'
 import './index.css'
 
 class CreatePassword extends Component {
+  onAddButton = event => {
+    event.preventDefault()
+  }
+
   render() {
     return (
       <div className="create-password-container">
@@ -10,7 +14,7 @@ class CreatePassword extends Component {
           alt="password manager"
           className="password-manager-img"
         />
-        <div className="add-container">
+        <form onSubmit={this.onAddButton} className="add-container">
           <h1>Add New Password</h1>
           <div className="details-container">
             <img
@@ -18,7 +22,11 @@ class CreatePassword extends Component {
               alt="search"
               className="details-icon"
             />
-            <input type="text" className="details-input" />
+            <input
+              type="text"
+              placeholder="Enter Website"
+              className="details-input"
+            />
           </div>
           <div className="details-container">
             <img
@@ -26,7 +34,11 @@ class CreatePassword extends Component {
               alt="search"
               className="details-icon"
             />
-            <input type="text" className="details-input" />
+            <input
+              type="text"
+              placeholder="Enter Username"
+              className="details-input"
+            />
           </div>
           <div className="details-container">
             <img
@@ -34,12 +46,16 @@ class CreatePassword extends Component {
               alt="search"
               className="details-icon"
             />
-            <input type="text" className="details-input" />
+            <input
+              type="password"
+              placeholder="Enter Password"
+              className="details-input"
+            />
           </div>
-          <button type="button" className="add-btn">
+          <button type="submit" className="add-btn">
             Add
           </button>
-        </div>
+        </form>
       </div>
     )
   }

@@ -5,10 +5,10 @@ import NoPassword from '../NoPassword'
 class Password extends Component {
   render() {
     return (
-      <div className="password_container">
+      <div className="passwords-container">
         <div className="password-heading-container">
           <p>
-            Your Passwords <span>0</span>
+            Your Passwords <span className="password-count">0</span>
           </p>
           <div className="search-container">
             <img

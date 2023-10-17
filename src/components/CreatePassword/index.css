@@ -2,34 +2,43 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #5763a5;
+  width: 90vw;
+  padding-bottom: 20px;
+  margin-top: 10px;
 }
 
 .password-manager-img {
   height: 350px;
 }
+
 .add-container {
   display: flex;
   flex-direction: column;
+  border-radius: 25px;
   background-color: #454f84;
-  height: 250px;
-  width: 90vw;
+  padding: 20px;
+  width: 90%;
 }
 .details-container {
   height: 50px;
-  width: 200px;
+  width: 250px;
   background-color: #f8fafc;
+  margin: 10px 0 10px 0;
   border-radius: 8px;
 }
 .details-icon {
-  height: 20px;
+  height: 30px;
+  margin-left: 10px;
 }
 .details-input {
   border: none;
   outline: none;
   border-left: 1px solid #94a3b8;
   height: 50px;
+  padding: 0px;
+  margin-left: 10px;
 }
 
 .add-btn {
