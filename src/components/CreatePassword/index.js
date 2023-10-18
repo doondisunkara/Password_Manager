@@ -20,22 +20,23 @@ class CreatePassword extends Component {
     this.setState({password: event.target.value})
   }
 
-  render() {
-    const {accountDetails, onAddingPassword} = this.props
-    const onAddButton = event => {
-      event.preventDefault()
-      const {siteName, userName, password} = this.state
-      if (siteName && userName && password) {
-        console.log('Namaste')
-        const newDetails = {
-          siteName: {siteName},
-          userName: {userName},
-          password: {password},
-        }
-        console.log(newDetails)
+  onAddButton = event => {
+    event.preventDefault()
+    const {siteName, userName, password} = this.state
+    const {onAddingPassword} = this.props
+    if (siteName && userName && password) {
+      console.log('Namaste')
+      const newDetails = {
+        siteName: {siteName},
+        userName: {userName},
+        password: {password},
       }
+      console.log(newDetails)
+      onAddingPassword(newDetails)
     }
+  }
 
+  render() {
     return (
       <div className="create-password-container">
         <img
@@ -43,7 +44,7 @@ class CreatePassword extends Component {
           alt="password manager"
           className="password-manager-img"
         />
-        <form onSubmit={onAddButton()} className="add-container">
+        <form onSubmit={this.onAddButton} className="add-container">
           <h1>Add New Password</h1>
           <div className="details-container">
             <img

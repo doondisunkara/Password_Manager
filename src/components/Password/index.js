@@ -9,8 +9,32 @@ class Password extends Component {
     passwordCount: 1,
   }
 
+  passwordsRender = () => {
+    const {passwordCount} = this.state
+    const {accountDetailsList} = this.props
+    if (passwordCount > 0) {
+      return (
+        <ul>
+          {accountDetailsList.map(eachDetail => (
+            <li>
+              <PasswordItem eachDetail={eachDetail} />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    return <NoPassword />
+  }
+
   render() {
     const {passwordCount} = this.state
+    const {accountDetailsList} = this.props
+    let eachDetail = {
+      siteName: '',
+      userName: '',
+      password: '',
+    }
+    console.log(accountDetailsList)
     return (
       <div className="passwords-container">
         <div className="password-heading-container">
@@ -36,7 +60,8 @@ class Password extends Component {
           <input id="showPassword" type="checkbox" />
           <label htmlFor="showPassword">Show Passwords</label>
         </div>
-        <PasswordItem />
+        <PasswordItem eachDetail={eachDetail} />
+        {this.passwordsRender()}
       </div>
     )
   }

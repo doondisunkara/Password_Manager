@@ -6,15 +6,21 @@ import CreatePassword from './components/CreatePassword'
 
 class App extends Component {
   state = {
-    accountDetails: {},
+    accountDetailsList: [],
   }
 
-  onAddingPassword = details => {
-    console.log('Who am I')
+  onAddingPassword = newDetails => {
+    console.log(newDetails)
+    const {accountDetailsList} = this.state
+    console.log(accountDetailsList)
+    const updatedList = [...accountDetailsList, newDetails]
+    this.setState({accountDetailsList: updatedList})
   }
 
   render() {
-    const {accountDetails} = this.state
+    const {accountDetailsList} = this.state
+    let accountDetails
+    console.log(accountDetailsList)
     return (
       <div className="password-manager">
         <img
@@ -26,9 +32,10 @@ class App extends Component {
           accountDetails={accountDetails}
           onAddingPassword={this.onAddingPassword}
         />
-        <Password />
+        <Password accountDetailsList={accountDetailsList} />
       </div>
     )
   }
 }
+
 export default App

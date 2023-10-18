@@ -3,7 +3,8 @@ import './index.css'
 
 class PasswordItem extends Component {
   render() {
-    const {site = 'youtube.com', name = 'Rahul', password = 'efgh'} = this.props
+    const {eachDetail} = this.props
+    const {site = 'youtube.com', name = 'Rahul', password = 'efgh'} = eachDetail
     return (
       <div className="password-item-container">
         <p className="account-logo-container logo">{name[0]}</p>
