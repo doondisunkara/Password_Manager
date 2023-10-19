@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {v4 as uuidv4} from 'uuid'
 import './index.css'
 
 class CreatePassword extends Component {
@@ -25,18 +26,19 @@ class CreatePassword extends Component {
     const {siteName, userName, password} = this.state
     const {onAddingPassword} = this.props
     if (siteName && userName && password) {
-      console.log('Namaste')
       const newDetails = {
-        siteName: {siteName},
-        userName: {userName},
-        password: {password},
+        id: uuidv4(),
+        siteName,
+        userName,
+        password,
       }
-      console.log(newDetails)
       onAddingPassword(newDetails)
+      this.setState({siteName: '', userName: '', password: ''})
     }
   }
 
   render() {
+    const {siteName, userName, password} = this.state
     return (
       <div className="create-password-container">
         <img
@@ -49,11 +51,12 @@ class CreatePassword extends Component {
           <div className="details-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/password-manager-website-img.png"
-              alt="search"
+              alt="website"
               className="details-icon"
             />
             <input
               type="text"
+              value={siteName}
               placeholder="Enter Website"
               className="details-input"
               onChange={this.OnSiteChange}
@@ -62,11 +65,12 @@ class CreatePassword extends Component {
           <div className="details-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/password-manager-username-img.png"
-              alt="search"
+              alt="username"
               className="details-icon"
             />
             <input
               type="text"
+              value={userName}
               placeholder="Enter Username"
               className="details-input"
               onChange={this.OnUserChange}
@@ -75,11 +79,12 @@ class CreatePassword extends Component {
           <div className="details-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/password-manager-password-img.png"
-              alt="search"
+              alt="password"
               className="details-icon"
             />
             <input
               type="password"
+              value={password}
               placeholder="Enter Password"
               className="details-input"
               onChange={this.OnPasswordChange}

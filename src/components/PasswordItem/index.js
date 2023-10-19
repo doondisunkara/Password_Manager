@@ -2,23 +2,45 @@ import {Component} from 'react'
 import './index.css'
 
 class PasswordItem extends Component {
+  OnDelete = () => {
+    const {accountDetails, OnDeleteItem} = this.props
+    const {id} = accountDetails
+    OnDeleteItem(id)
+  }
+
   render() {
-    const {eachDetail} = this.props
-    const {site = 'youtube.com', name = 'Rahul', password = 'efgh'} = eachDetail
+    const {accountDetails, isChecked} = this.props
+    const {siteName, userName, password} = accountDetails
     return (
-      <div className="password-item-container">
-        <p className="account-logo-container logo">{name[0]}</p>
+      <li className="password-item-container">
+        <p className="account-logo-container logo">
+          {userName[0].toUpperCase()}
+        </p>
         <div className="account-details">
-          <h1>{site}</h1>
-          <p>{name}</p>
-          <p>{password}</p>
+          <p>{siteName}</p>
+          <p>{userName}</p>
+          {isChecked ? (
+            <p>{password}</p>
+          ) : (
+            <img
+              className="stars-img"
+              src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
+              alt="stars"
+            />
+          )}
         </div>
-        <img
-          className="delete-icon"
-          src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png "
-          alt="delete"
-        />
-      </div>
+        <button
+          className="delete-btn"
+          data-testid="delete"
+          onClick={this.OnDelete}
+        >
+          <img
+            className="delete-icon"
+            src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png "
+            alt="delete"
+          />
+        </button>
+      </li>
     )
   }
 }

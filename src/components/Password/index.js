@@ -6,19 +6,32 @@ import PasswordItem from '../PasswordItem'
 
 class Password extends Component {
   state = {
-    passwordCount: 1,
+    searchInput: '',
+    isChecked: false,
   }
 
-  passwordsRender = () => {
-    const {passwordCount} = this.state
+  OnDeleteItem = id => {
+    console.log(id)
+    const {accountDetailsList, UpdateSavedPasswords} = this.props
+    const updatedList = accountDetailsList.filter(each => each.id !== id)
+    UpdateSavedPasswords(updatedList)
+  }
+
+  passwordsRender = searchResults => {
+    const {isChecked, searchInput} = this.state
     const {accountDetailsList} = this.props
-    if (passwordCount > 0) {
+    const passwordsCount = accountDetailsList.length
+    if (passwordsCount > 0 && searchResults.length > 0) {
       return (
-        <ul>
-          {accountDetailsList.map(eachDetail => (
-            <li>
-              <PasswordItem eachDetail={eachDetail} />
-            </li>
+        <ul className="passwords-list-container">
+          {searchResults.map(eachDetail => (
+            <PasswordItem
+              OnDeleteItem={this.OnDeleteItem}
+              accountDetails={eachDetail}
+              searchInput={searchInput}
+              isChecked={isChecked}
+              key={eachDetail.id}
+            />
           ))}
         </ul>
       )
@@ -26,22 +39,25 @@ class Password extends Component {
     return <NoPassword />
   }
 
+  checkStatus = event => {
+    this.setState({isChecked: event.target.checked})
+  }
+
+  OnSearchInputChange = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
   render() {
-    const {passwordCount} = this.state
     const {accountDetailsList} = this.props
-    let eachDetail = {
-      siteName: '',
-      userName: '',
-      password: '',
-    }
-    console.log(accountDetailsList)
+    const {isChecked, searchInput} = this.state
+    const searchResults = accountDetailsList.filter(each =>
+      each.siteName.includes(searchInput.toLowerCase()),
+    )
     return (
       <div className="passwords-container">
         <div className="password-heading-container">
-          <p>
-            Your Passwords{' '}
-            <span className="password-count">{passwordCount}</span>
-          </p>
+          <h1>Your Passwords </h1>
+          <p className="password-count">{accountDetailsList.length}</p>
           <div className="search-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/password-manager-search-img.png"
@@ -52,16 +68,20 @@ class Password extends Component {
               type="search"
               placeholder="Search"
               className="search-input"
+              onChange={this.OnSearchInputChange}
             />
           </div>
         </div>
         <hr />
         <div className="show-password-container">
-          <input id="showPassword" type="checkbox" />
+          <input
+            id="showPassword"
+            type="checkbox"
+            onChange={this.checkStatus}
+          />
           <label htmlFor="showPassword">Show Passwords</label>
         </div>
-        <PasswordItem eachDetail={eachDetail} />
-        {this.passwordsRender()}
+        {this.passwordsRender(searchResults)}
       </div>
     )
   }

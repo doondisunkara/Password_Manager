@@ -9,18 +9,25 @@ class App extends Component {
     accountDetailsList: [],
   }
 
+  UpdateSavedPasswords = updatedList => {
+    console.log(updatedList)
+    this.setState({accountDetailsList: updatedList})
+  }
+
   onAddingPassword = newDetails => {
     console.log(newDetails)
     const {accountDetailsList} = this.state
     console.log(accountDetailsList)
     const updatedList = [...accountDetailsList, newDetails]
-    this.setState({accountDetailsList: updatedList})
+    this.setState(prevState => ({
+      accountDetailsList: updatedList,
+      passwordsCount: prevState.passwordsCount + 1,
+    }))
   }
 
   render() {
-    const {accountDetailsList} = this.state
-    let accountDetails
-    console.log(accountDetailsList)
+    const {accountDetailsList, passwordsCount} = this.state
+    console.log(passwordsCount)
     return (
       <div className="password-manager">
         <img
@@ -28,11 +35,11 @@ class App extends Component {
           alt="app logo"
           className="app-logo"
         />
-        <CreatePassword
-          accountDetails={accountDetails}
-          onAddingPassword={this.onAddingPassword}
+        <CreatePassword onAddingPassword={this.onAddingPassword} />
+        <Password
+          UpdateSavedPasswords={this.UpdateSavedPasswords}
+          accountDetailsList={accountDetailsList}
         />
-        <Password accountDetailsList={accountDetailsList} />
       </div>
     )
   }

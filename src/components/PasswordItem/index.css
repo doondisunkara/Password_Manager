@@ -30,8 +30,16 @@
   font-weight: 800;
   line-height: 1;
 }
-.delete-icon {
-  height: 40px;
-  width: 50px;
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  height: 30px;
   margin-left: auto;
+}
+.delete-icon {
+  height: 30px;
+  width: 30px;
+}
+.stars-img {
+  width: 120px;
 }
